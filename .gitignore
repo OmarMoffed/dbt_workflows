@@ -1,0 +1,20 @@
+# MAC files
+.DS_Store
+
+# Virtual environment
+venu/
+.env
+.venv/
+
+# dbt related artefacts
+dbt_packages/
+target/
+dbt_modules/
+logs/
+dbt_internal_packages/
+
+
+# Certificates and keys
+.user.yml
+profiles.yml
+.dbt/
