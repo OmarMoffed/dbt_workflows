@@ -1,0 +1,25 @@
+version: 2
+# version: 2 is mandatory for dbt schema/source files
+
+sources:
+  - name: dummy_raw # usually you write the schema name but you can also write any name, you will use this name inside {{ source('dummy_raw', 'table_name') }}
+    database: dummy_database_project # Database name,dbt will assume that the database is the same as the target one if not specified
+    schema: dummy_raw # Schema, you can exclude this is the schema is the same as the name of the source you set.
+    description: "Optional: dummy description for documentation"
+    tables: # List of tables coming from external systems
+      - name: dummy_customers # Example 1: customers table
+        description: "Customers table ingested from CRM system" # Optional: description for documentation
+        config:
+          freshness: # you can set freshness tests at the table level or at the source level
+            warn_after: {count: 24, period: hour} # Optional: set a warning if data is older than 24 hours
+            error_after: {count: 48, period: hour} # Optional: set an error if data is older than 48 hours
+          loaded_at_field: ingestion_timestamp # Optional: specify the field that indicates when the data was last loaded from the source systemm like sys_updated_at or sys_inserted_at
+        columns: # Optional: tests on the raw table directly from dbt if you want to ensure data quality at the source level
+          - name: customer_id
+            description: "The unique identifier for each customer."
+            tests:
+              - not_null
+              - unique
+
+
+# IMPORTANT: you can run the command <dbt source freshness> to check the freshness of your sources based on the loaded_at_field you configured and the freshness config

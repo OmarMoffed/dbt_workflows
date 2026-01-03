@@ -1,13 +1,12 @@
-
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'dbt_fundamentals'
+name: 'dbt_workflows'
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'dbt_fundamentals'
+profile: 'dbt_workflows'
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -34,10 +33,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   dbt_fundamentals:
-    crm:
-      +schema: crm
+    customer:
+      +schema: customer
       +materialized: table
-
+    order:
+      +schema: order
+      +materialized: table
     
 seeds:
   dbt_fundamentals:

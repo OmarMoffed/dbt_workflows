@@ -1,0 +1,17 @@
+models:
+  - name: dim_order
+    description: "A table containing order details."
+    columns:
+
+      - name: order_id
+        description: "The unique identifier for each order."
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "The unique identifier for the customer who placed the order."
+        #tests:
+        # - relationship: # this will ensure that all customer_id values in dim_order exist in dim_customer
+        #       to: ref('dim_customer')
+        #       field: customer_id

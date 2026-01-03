@@ -1,0 +1,15 @@
+# packages are defined in packages.yml, and they are installed using the command `dbt deps`
+# packages are useful to extend the functionalities of dbt using macros, tests, and more
+# packages are hosted on the dbt Hub: https://hub.getdbt.com/
+# packages are created and maintained by the dbt community and dbt Labs
+# packages are versioned, so you can specify the version you want to use
+# packages will be deleted if you delete them from this file and run `dbt deps` again or if you run `dbt clean`
+# when you run the command `dbt deps`, dbt will create a folder called `dbt_modules` in your project directory where the packages will be installed
+
+# Here is an example of how to include a package
+packages:
+  - package: dbt-labs/codegen # A package to auto-generate models based on your source tables, very useful to bootstrap your project
+    version: 0.14.0
+#here is an example of how to use codegen to generate models based on your source tables
+# after installing the package, you can run the command `dbt run-operation generate_source_models --args '{"schema_name": "your_schema_name"}'`
+# this will create models in your models/ directory based on the tables in the specified schema

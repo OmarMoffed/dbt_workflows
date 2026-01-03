@@ -1,0 +1,16 @@
+version: 2
+# version: 2 is mandatory for dbt schema/source files
+
+models:
+  - name: dim_customer
+    description: "A table containing customer details."
+    columns:
+
+      - name: customer_id
+        description: "The unique identifier for each customer." # this description will appear in the documentation
+        tests: #tests will run automatically during dbt test command <dbt run>, and it will run on the database side
+          - unique #generic test to ensure all values are unique
+          - not_null #generic test to ensure no null values
+
+      - name: first_name
+        description: "The first name of the customer."
