@@ -21,7 +21,7 @@ snapshot-paths: ["snapshots"]
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
     - "target"
-    - "dbt_modules"
+    - "dbt_packages"
 
 
 # Configuring models
@@ -32,7 +32,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  dbt_fundamentals:
+  dbt_workflows:
     customer:
       +schema: customer
       +materialized: table
@@ -41,7 +41,7 @@ models:
       +materialized: table
     
 seeds:
-  dbt_fundamentals:
+  dbt_workflows:
     raw:
       +schema: raw
     crm:
